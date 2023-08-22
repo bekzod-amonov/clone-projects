@@ -1,0 +1,27 @@
+.second-bar-css{
+  background-color: rgb(33, 46, 67);
+  color: white;
+  position: absolute;
+  display: flex;
+  top: 50px;
+  left: 0;
+  right:0;
+  align-items: center;
+  justify-content: space-between;
+  height: 40px;
+}
+
+.menu-bar-css{
+  margin-left: 40px;
+  font-size: 15px;
+  display: flex;
+  flex: 0.65;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.all-deals-css{
+  margin-right: 35px;
+  font-size: 20px;
+}
+

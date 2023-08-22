@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TODO LIST PROJECT CLONE</title>
+  </head>
+  <body>
+    <p>To-Do List App</p>
+    <div class="css-input-grid">
+      <input placeholder="Todo name" class="css-input-todo js-input-todo">
+      <input type="date" class="css-date-input-todo js-date-input-todo">
+      <button class="js-add-button css-add-button">Add</button>
+    </div>
+    <div class="js-todo-html css-todo-html"></div>
+    <style>
+
+      body{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+      }
+      .css-input-grid, .css-todo-html{
+        display: grid;
+        grid-template-columns: 200px 150px 100px;
+        align-items: center;
+        column-gap: 10px;
+        margin-bottom: 10px;
+      }
+      .css-todo-html{
+        row-gap: 10px;
+      }
+      .css-add-button{
+        padding: 8px;
+        border-radius: 0;
+        border: none;
+        background-color: green;
+        color: white;
+      }
+      .css-delete-button{
+        padding: 8px;
+        border-radius: 0;
+        border: none;
+        background-color: red;
+        color: white;
+      }
+      .css-input-todo, .css-date-input-todo{
+        padding: 6px;
+        border-radius: 0;
+        border-width: 1px;
+      }
+
+    </style>
+    <script>
+      
+      const todoList = [{
+        name: 'Wash dishes',
+        dueDate: '12/08/2023'
+      }, {
+        name: 'Clean carpets',
+        dueDate: '22/08/2023'
+      }]
+
+      renderToDoList();
+
+      function renderToDoList() {
+        let todoListHTML = '';
+
+        todoList.forEach((todo, index) => {
+          const {name, dueDate} = todo;
+
+          todoListHTML += `
+          <div>${name}</div>  
+          <div>${dueDate}</div>
+          <button class = "js-delete-button css-delete-button">Delete</button>    
+        `
+        })
+
+        document.querySelector('.js-todo-html')
+          .innerHTML = todoListHTML;
+
+        document.querySelectorAll('.js-delete-button')
+          .forEach((deleteButton, index) => {
+            deleteButton.addEventListener('click', ()=> {
+              todoList.splice(index, 1);
+              renderToDoList();
+            })
+          })  
+      }
+      
+      document.querySelector('.js-add-button')
+        .addEventListener('click', ()=> {
+          addToDo();
+        })
+
+       function addToDo() {
+        
+        const inputName = document.querySelector('.js-input-todo');
+        const inputDueDate = document.querySelector('.js-date-input-todo');
+
+        const name = inputName.value;
+        const dueDate = inputDueDate.value;
+
+        todoList.push({
+          name,
+          dueDate
+        })
+
+        inputName.value = '';
+        inputDueDate.value = '';
+
+        renderToDoList();
+       }
+
+    </script>
+  </body>
+</html>
